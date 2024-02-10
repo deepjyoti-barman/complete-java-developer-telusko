@@ -158,3 +158,37 @@
   `$ git push origin v1.0`
 - Push all local tags to remote repository:  
   `git push origin --tags`
+
+## Git Branching
+
+- We create branches for experimental features, and merge it to main when everything seems work fine. This way we can keep the main branch unaffected or isolated from most of the issues.
+- Create a new branch:  
+  `$ git branch <branch-name>`
+- Switch to the new branch:  
+  `$ git checkout <branch-name>`  
+  `$ git switch <branch-name>`
+- Create and switch to the new branch:  
+  `$ git checkout -b <branch-name>`  
+  `$ git switch -c <branch-name>`
+- Notes on `git switch`:
+  - Introduced in Git 2.23
+  - Specifically designed for branch switching, which makes its purpose clearer and more straightforward.
+  - Can create a branch the -c or --create option.
+  - Unlike `git checkout`, this command doesn't allow you to directly switch to specific commits or tags. This means we're less likely to accidentally end up in a detached HEAD state.
+- Notes on `git checkout`:
+  - Traditional command for branch switching.
+  - This command server multiple other purposes.
+  - Can create a branch the -b or --branch option.
+  - Allows you to directly switch to specific commits or tags. However, this can sometimes lead to a detached HEAD state if we're not careful.
+- Display all the local and remote branches:  
+  `$ git branch --all`
+- Switch to previous branch:  
+  `$ git switch -`
+- Switch to previous branch:  
+  `$ git branch -d <branch-name>`  
+  `$ git branch --delete <branch-name>`
+- Pushing a new branch into remote repository:  
+  `$ git push origin <new-branch-name>`
+- Show graphical representation of all Git branches:
+  - Command: `git log --graph`
+  - VSCode extension: Git Graph
