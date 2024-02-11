@@ -192,3 +192,90 @@
 - Show graphical representation of all Git branches:
   - Command: `git log --graph`
   - VSCode extension: Git Graph
+
+## Git Merge
+
+- Merge 'feature' branch into 'main' branch:  
+  `$ git switch main`  
+  `$ git pull`  
+  `$ git merge feature`
+
+## Git Rebase
+
+- Rebase 'feature' branch into 'main' branch:
+  `$ git switch main`  
+  `$ git pull`  
+  `$ git rebase feature`
+- When we merge two branches with `git merge`, it creates a new commit for the merge. This way it does not keep the entire history of the branch getting merged.
+- On the other hand, when we merge two branches with `git rebase` it maintains the entire history of the branch getting merged and thus keeps a simple and clean track of all the commit history for both the branches.
+- If we want to maintain a clear tree `git rebase` is the way to go. But, if we want to know what changes happened in each 'feature' branch and when it got merged to 'main' we can use `git merge`.
+
+## Git Merge Conflict
+
+- Merge conflict takes place when we make changes in the same line of the same file in two different branches and try to merge or rebase one with the other.
+- How to solve the conflicts:  
+  `$ git pull origin main`  
+  `$ git merge feature` (Created conflict)  
+  `$ git diff`  
+  Solve the conflicts in a text editor / ide, save the files  
+  `git add .`  
+  `git commit -m "Conflicts resolved"`Commit the change
+- Pull configurations:
+  - `git config pull.rebase false` (Safe option)
+    - When pull.rebase is set to false, it means that git pull will not automatically rebase local changes on top of the incoming changes from the remote repository. Instead, it will default to using merge commits to integrate changes.
+    - This option is suitable if you prefer to use merge commits when integrating changes from a remote repository.
+    - Merge commits explicitly show the point at which branches were merged, providing clear visibility into the project's history.
+  - `git config pull.rebase true`
+    - When pull.rebase is set to true, it means that git pull will automatically rebase local changes on top of the incoming changes from the remote repository. This can result in a cleaner history without unnecessary merge commits.
+    - This option is suitable if you prefer a linear history without unnecessary merge commits.
+    - Rebasing (pull.rebase true) can be problematic if you're working on a shared branch with other collaborators, as it rewrites commit history and can lead to conflicts.
+  - `git config pull.ff only`
+    - When pull.ff is set to only, it means that git pull will only perform fast-forward merges if possible. If a fast-forward merge is not possible (e.g., due to diverging branches), git pull will fail instead of creating a merge commit.
+    - This option is suitable if you want to ensure that git pull always performs fast-forward merges, which preserve the linear history of your branch.
+    - Fast-forward merges occur when the branch you're pulling into can be updated by simply moving its pointer forward to the latest commit on the remote branch. This maintains a straightforward history without additional merge commits.
+
+## Git Time Travel
+
+- Create a new branch from a previous commit:  
+  `$ git checkout <commit-id>`  
+  `$ git checkout -b <branch-name>`
+
+## Git Stash
+
+- Situations may come when we want to save your code somewhere without committing and want to switch to another branch for some hotfix - in such cases `git stash` can be used to help us out.
+- Stash uncommitted changes in the working directory:  
+  `$ git stash`  
+  `$ git stash push`  
+  `$ git stash save`
+- List all the stashes:  
+  `$ git stash list`
+- Show the changes in the most recent stash:  
+  `$ git stash show`
+- Apply the most recent stash to the working directory without removing from the stash list:  
+  `$ git stash apply`
+- Apply the most recent stash to the working directory and remove it from the stash list:  
+  `$ git stash pop`
+- Apply a specific stash to the working directory without removing from the stash list:  
+  `$ git stash apply stash@{n}`
+- Remove all stashes from the stash list:  
+  `$ git stash clear`
+- Remove the most recent stash from the stash list:  
+  `$ git stash drop`
+- Remove a specific stash from the stash list:  
+  `$ git stash drop stash@{n}`
+
+## Git Fork
+
+- In Git, a fork is a copy of a repository that allows us to freely experiment with changes without affecting the original repository. The primary use of Git fork is for collaborative development workflows, particularly in open-source projects or team collaborations.
+- Forking a project will create a clone of the repository in your own GitHub account so that you can experiment and push changes freely.
+
+## Git Pull Request
+
+- A Git pull request (PR) is a way of proposing changes to a repository hosted on a platform like GitHub, GitLab, or Bitbucket. Pull requests facilitate code review, collaboration, and integration of changes into the main branch of a repository.
+- Git Pull Requests are used for:
+  - Code review
+  - Collaboration
+  - Quality assurance
+  - Integration and workflow management
+  - Risk mitigation
+  - Knowledge sharing and learning
