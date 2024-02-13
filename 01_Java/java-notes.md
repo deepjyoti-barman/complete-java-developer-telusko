@@ -234,3 +234,68 @@
     - In the for loop: initialization and condition check will be performed first, then it will execute all the statements which is there in the body of the loop and finally will execute the increment/decrement operation
     - Condition check is the mandatory part of the for loop, while initialization and increment/decrement operations are optional e.g. `for (; i < 5; ) { }`. This can make the for loop look like a while loop.
 - If you know how many iterations you want to perform you can use for-loop. If you want to read all the characters of a file, until the EOF is reached using while loop makes sense.
+
+## Class and Object
+
+- Everything around us is an object.
+- An object knows something (e.g. has some properties), and does something (e.g has some behaviour or functions).
+- In order to create an object we need a class.
+- In programming we provide the design of an object in the class file, i.e. we need to create a class file which will act as a blueprint to create the object.
+- JVM create the objects in Java.
+
+## JDK vs JRE vs JVM
+
+- JDK
+  - Stands for "Java Development Kit".
+  - Used to compile the code and convert it to byte code.
+  - JRE + One extra layer on top of it = JDK.
+  - JDK is mostly installed on developer machines.
+- JVM
+  - Stands for "Java Virtual Machine".
+  - We have a machine and given a virtual layer on top of it so it is called JVM, which used to run the code.
+- JRE:
+  - Stands for "Java Runtime Environment'.
+  - JVM + One extra layer on top of it = JRE.
+  - It provides the extra utility classes and files which we have used in our code.
+  - It also validates your bytecode.
+  - JRE is mostly installed on client machines.
+
+## Method Overriding
+
+- Having methods with same name but with different no parameters or even the type of parameters in a class is known as Method overriding.
+- Return type does not matter in Method overriding.
+- The only things that matter are:
+  - No. of method parameters
+  - Method parameter types
+- Having same method name to perform different calculations can save the overhead of documentation.
+
+## Stack and Heap
+
+- JVM memory can be categorized in two parts:
+  - Stack Memory / Stack Area
+    - Area where you can store you data.
+    - Based on the LIFO (Last In First Out) principle.
+    - Local variables are the part of stack memory.
+    - Local variables which includes reference variables will be part of the stack but will point to an address of the object which is stored in heap memory.
+  - Heap Memory
+    - An open area which can expand.
+    - Used to store the objects.
+    - Each object will have two items:
+      - All the instance variables.
+      - All the method declarations (NOTE: actual area which all the methods will consume are of the stack).
+- Diagram:  
+  ![Stack vs Heap](images/stack_vs_heap.jpeg)
+
+## Arrays
+
+- Arrays are used to store multiple values in one variable.
+- Different ways of creation of an integer array:
+  - Direct assignment of values:
+    - `int[] num = { 5, 6, 7 };`
+    - `int num[] = { 5, 6, 7 };`
+  - Array creation without initial values:
+    - `int num[] = new int[4];`
+    - Default value of all the variables will be set to 0
+    - In the statement `new int[4]`, 4 is the size of the array
+- Once you define the size of an array we have to stick with that as we won't be able to change the size of it later.
+- Arrays index values starts from 0.
