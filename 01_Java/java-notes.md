@@ -295,7 +295,18 @@
     - `int num[] = { 5, 6, 7 };`
   - Array creation without initial values:
     - `int num[] = new int[4];`
-    - Default value of all the variables will be set to 0
-    - In the statement `new int[4]`, 4 is the size of the array
+    - Default value of all the variables will be set to 0.
+    - In the statement `new int[4]`, 4 is the size of the array.
 - Once you define the size of an array we have to stick with that as we won't be able to change the size of it later.
 - Arrays index values starts from 0.
+- Size of an array has to be an integer and it can't be negative as well, if we provide a negative size to an array it will throw `NegativeArraySizeException`.
+- If you are trying to access an element is equal or greater than the size of the array you will get `ArrayIndexOutOfBoundsException`.
+- Multi-dimensional array is also known as array of arrays.
+- A jagged array, is a multi-dimensional array structure in which unlike a rectangular or multidimensional array, the inner arrays in a jagged array can have varying lengths, providing flexibility in organizing and representing data with irregular or uneven patterns.
+- In a jagged array we specify the no of columns each row is going to hold one by one.
+
+### Drawbacks of an array
+
+- The array in Java is an object (because we are allocating space in the heap memory using the `new` keyword). An array will occupy continuous memory locations in the heap memory, as a problem once we assign the size of the array we can increase of decrease it. A solution to this problem is create a new array and copy all the elements of the current array to the new array - but that will again consume some time.
+- Every time we want to searching something it will traverse between the elements. So for searching or for inserting values in between array consumes a lot of time.
+- We cannot store values of different data types in an array.
