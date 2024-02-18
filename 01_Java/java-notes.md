@@ -336,7 +336,7 @@
   System.out.println(s3 == s4);   // false
   ```
 
-- Every time a new String object is created
+- Every time a new String object is created.
 - To use mutable strings in Java we have to create the objects of StringBuffer and StringBuilder classes.
 - StringBuffer is thread-safe, StringBuilder is not.
 - Initial capacity of StringBuffer is 16 and it grows by [(initialCapacity * 2) + 2] when the initial capacity is exceeded to accommodate more no of characters.
