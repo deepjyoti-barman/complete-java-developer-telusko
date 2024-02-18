@@ -310,3 +310,33 @@
 - The array in Java is an object (because we are allocating space in the heap memory using the `new` keyword). An array will occupy continuous memory locations in the heap memory, as a problem once we assign the size of the array we can increase of decrease it. A solution to this problem is create a new array and copy all the elements of the current array to the new array - but that will again consume some time.
 - Every time we want to searching something it will traverse between the elements. So for searching or for inserting values in between array consumes a lot of time.
 - We cannot store values of different data types in an array.
+
+## String
+
+- String in Java is a class, which represents a bunch of characters together.
+- String class objects are immutable in nature, every time you try to change the value of it a new object is created instead of modifying the existing object.
+- The following syntax creates the object in String Constant Pool (SCP) area inside heap memory:
+
+  ```java
+  String s1 = "Navin";
+  String s2 = "Navin";
+  System.out.println(s1 == s2);   // true
+  ```
+
+- Both the references are pointing to the same object "Navin".
+- This optimization technique is used since Strings are used heavily in Java.
+- i.e. new references variables will point to existing String objects if the value already exists in SCP area.
+- Unreferenced objects will be ready for garbage collection.
+- In String class hashCode() method is overloaded so it calculates the output based on their contents and not on their memory addresses.
+- The following syntax creates the object in the heap memory:
+
+  ```java
+  String s3 = new String("Ashok");
+  String s4 = new String("Ashok");
+  System.out.println(s3 == s4);   // false
+  ```
+
+- Every time a new String object is created
+- To use mutable strings in Java we have to create the objects of StringBuffer and StringBuilder classes.
+- StringBuffer is thread-safe, StringBuilder is not.
+- Initial capacity of StringBuffer is 16 and it grows by [(initialCapacity * 2) + 2] when the initial capacity is exceeded to accommodate more no of characters.
