@@ -340,3 +340,30 @@
 - To use mutable strings in Java we have to create the objects of StringBuffer and StringBuilder classes.
 - StringBuffer is thread-safe, StringBuilder is not.
 - Initial capacity of StringBuffer is 16 and it grows by [(initialCapacity * 2) + 2] when the initial capacity is exceeded to accommodate more no of characters.
+
+## Static keyword
+
+### Static variable
+
+- The static keyword makes the the variable common to every object.
+- Thus a static variable is shared by all the objects.
+- static variables should be called with the class name, calling it with the object reference should be avoided.
+- We can use the static as well as non-static variables within the non-static method.
+
+### Static methods
+
+- We cannot use a non-static variable within the static method. This is because non-static variables are a part of the object and not a part of the class.
+- main() method is static so that JVM can call it without creating any object of the class.
+
+### Static block
+
+- Static block is used to initialize the static variables.
+- Irrespective of how many objects we have, static block is called only once during the class loading process.
+- Object creation has two steps:
+  - Class loads
+  - Objects are instantiated
+- Classes will get loaded from our library to 'Class Loader' which is part of JVM only once.
+- Every time you load a class it will call the static block, and since class loading happens first that's why the static block will be called first and then it will create the object during which program flow will call the constructor of the class.
+- If we don't create any object, JVM will not load the class as well.
+- To load the class without creating any object we can use:  
+  `Class.forname("<class_name>");`
