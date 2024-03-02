@@ -20,7 +20,7 @@
 - Because writing programs using ALL is also not so user-friendly as well, so after a lof of research we have come across writing programs using symbols and english like commands, which is known as **High Level Language (HLL)**.
 - Processor can't understand HLL as well so we have introduced a system software called **Compiler** which converts HLL, which is in symbols and english like commands to MLL, which is in binary form.
 
-## Memory Unit in A Computer
+## Memory Unit in a Computer
 
 - CPU can process our instructions and gives us the desired output/result.
 - Hard Disk Drive/Device (HDD) is where you can keep your data/instructions which you want to send to your processor to execute and get the desired output.
@@ -284,7 +284,7 @@
       - All the instance variables.
       - All the method declarations (NOTE: actual area which all the methods will consume are of the stack).
 - Diagram:  
-  ![Stack vs Heap](images/stack_vs_heap.jpeg)
+  ![Stack vs Heap](resources/stack_vs_heap.jpeg)
 
 ## Arrays
 
@@ -305,7 +305,7 @@
 - A jagged array, is a multi-dimensional array structure in which unlike a rectangular or multidimensional array, the inner arrays in a jagged array can have varying lengths, providing flexibility in organizing and representing data with irregular or uneven patterns.
 - In a jagged array we specify the no of columns each row is going to hold one by one.
 
-### Drawbacks of an array
+### Drawbacks of an Array
 
 - The array in Java is an object (because we are allocating space in the heap memory using the `new` keyword). An array will occupy continuous memory locations in the heap memory, as a problem once we assign the size of the array we can increase of decrease it. A solution to this problem is create a new array and copy all the elements of the current array to the new array - but that will again consume some time.
 - Every time we want to searching something it will traverse between the elements. So for searching or for inserting values in between array consumes a lot of time.
@@ -341,21 +341,21 @@
 - StringBuffer is thread-safe, StringBuilder is not.
 - Initial capacity of StringBuffer is 16 and it grows by [(initialCapacity * 2) + 2] when the initial capacity is exceeded to accommodate more no of characters.
 
-## Static keyword
+## Static Keyword
 
-### Static variable
+### Static Variable
 
 - The static keyword makes the the variable common to every object.
 - Thus a static variable is shared by all the objects.
 - static variables should be called with the class name, calling it with the object reference should be avoided.
 - We can use the static as well as non-static variables within the non-static method.
 
-### Static methods
+### Static Methods
 
 - We cannot use a non-static variable within the static method. This is because non-static variables are a part of the object and not a part of the class.
 - main() method is static so that JVM can call it without creating any object of the class.
 
-### Static block
+### Static Block
 
 - Static block is used to initialize the static variables.
 - Irrespective of how many objects we have, static block is called only once during the class loading process.
@@ -367,3 +367,84 @@
 - If we don't create any object, JVM will not load the class as well.
 - To load the class without creating any object we can use:  
   `Class.forname("<class_name>");`
+
+### Encapsulation
+
+- Capsule = Something which is kept closed, tight and no one from the outside world can access it.
+- e.g. we being a human we have different information stored in our brain, but we may or may expose this to outside world.
+- We may decide to expose our name and age, but we may not expose sensitive information like address, phone no or password to someone we don't know to maintain privacy.
+- `private` variables are only accessible within the same class.
+- Every time we create an instance variable we should make it private. This is because, we should not allow people to access our data directly from outside of the class and provide an indirect way to access the data using getter and setter methods.
+- Using getters and setters are basically getting the values using methods and we are also setting the values using methods. Thus, we are binding our data with the methods so that no one from the outside world can access it. This way of encapsulating data with the methods is known as Encapsulation.
+- VS Code -> Right click on the class you want to generate getter and setters -> `Source Action` -> `Generate getters and setters` -> Check on the variables and then click on `OK`.
+
+### this Keyword
+
+- `this` is a keyword which represents the current object, the object which is calling the method and is used to point to the instance variable of the class when there is also a local variable present in the method with the same name.
+
+### Constructor
+
+- A constructor is used to initialize the instance variables at the time of object creation.
+- A constructor looks like a method itself, the only change is in constructor we don't specify the return type and name of the constructor is same as the class name.
+- A constructor is called every time a new object is created.
+- Constructor can be of two types:
+  - Default constructor
+  - Parameterized constructor
+- The Java compiler will add a constructor automatically with a blank body when you don't mention any constructor, which is called the default constructor.
+- The Java compiler will not add the default constructor if we write our very own parameterized constructor of the class, in that case it is our duty to write the default constructor if required.
+
+### Naming Convention
+
+- Conventions are used to improve readability.
+- Java follows a naming convention called Camel casing.
+- Class, Enum and Interface name should start with a capital letter.
+- Variable and method name should start with a small letter.
+- Constants name should contain of all capital letters.
+- When a variable name is having multiple words, second word onwards each word's first letter should start with a capital letter.
+
+### Inheritance
+
+- Inheritance is the property by virtue of which a child class can inherit all the properties of a parent class.
+- Parent class is also known as base class or super class.
+- Child class is also known as derived class or sub class.
+- Inheritance helps in code re-useability and removing redundancy.
+- For inheritance to work we need the .class file of the parent class, .java file of the parent class is not required.
+- Parent child relationship is known as IS-A relationship.
+- `extends` keyword is used to inherit the properties of one class to another class.
+- Multiple inheritance does not work in Java because;
+  - If there is a method with same name and parameters e.g. show() in both the parent classes e.g class A and class B, then child class object will be in ambiguity to call the method from which one of the parent classes.
+  - While instantiating the object of child class, compiler in again in ambiguity and does not know which base class constructor to call using super() method.
+  - This problem is known as diamond problem.
+- If a method with same signature and return type exists in both parent and child classes and we call that method with the child class object, then the behavior of parent class method gets overridden by the child class method. This is called method overriding.
+
+### this() and super() Method
+
+- Every constructor has a implicit method called super() which is by default added by the compiler at the top of all other statements in the constructor.
+- super() method is used to call the constructor of the super class, implicit super() call always invokes the default constructor of the parent class.
+- Every class in Java, extends the `Object` class.
+- this() method will execute the constructor of the same class.
+
+### Packages
+
+- Packages are used to organize Java files by their category and to create a project structure.
+- In general whatever class we use in Java belongs to a particular package.
+- In Java, there is only one package that gets imported by default in all classes, and that is the java.lang package. This package includes fundamental classes and interfaces closely tied to the language and runtime system. Examples include `Object`, `System`, `String`, `Thread`, `Math`, etc.
+- Here's the import statement for this package: `import java.lang.*;`.
+- However, you don't need to explicitly import this package in your Java programs, as it's done automatically by the Java compiler.
+- In the statement `import java.lang.*;`, `*` refers to all the files (and not folders) present inside `java.lang` package / folder.
+- We can make a shareable package name unique by appending your reverse domain name in the beginning of your package name e.g. `package com.mmt.tools.*`.
+
+### Access Modifiers
+
+- Properties and methods with default access modifier can only be accessed within the same package and can't be accessed from outside.
+- Hence, if we want something to be accessed outside the packages always make it public and this is why methods most of time they are public.
+- Properties and methods with private access modifier can only be accessed within the same class.
+- Properties and methods with protected access modifier can only be accessed within the same package or within the sub-class.
+- Properties and methods with public access modifier can be used from anywhere.
+- Conventions:
+  - Sharable classes should be marked public.
+  - Variables in most of the cases should be marked private.
+  - Methods most of the type should be public, or protected in some rare cases.
+  - Try to avoid using default.
+- Access modifiers and their scopes:  
+  ![Access Modifiers](resources/access_modifers.jpeg)
