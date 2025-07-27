@@ -448,3 +448,146 @@
   - Try to avoid using default.
 - Access modifiers and their scopes:  
   ![Access Modifiers](resources/access_modifers.jpeg)
+
+### Polymorphism
+
+- Polymorphism = Poly + Morphism, whereas poly = many, morphism = behavior.
+- In the world of OOP, the same object or the same reference will have different behavior based on how you create the instance of it.
+- Two types:
+  - Compile-time polymorphism / Early binding: When the behavior is defined at compile-time (e.g. Method overloading)
+  - Run-time polymorphism / Late binding: When the behavior is defined at run-time (e.g. Method overriding)
+- A parent class reference can refer to a child class object.
+- When the same object reference behaves differently based on the object it is referring to, it is called dynamic method dispatch or runtime polymorphism. Because during compile time looking at the method call (method which is overridden in the child class) we will not be able to ascertain which method will be called - method of the parent class or method of the child class, this decision will be taken dynamically at the run-time.
+
+### final Keyword
+
+- The `final` keyword can be used with a variable, method and a class.
+- When the `final` keyword is used with a variable, the variable becomes a constant.
+- When the `final` keyword is used with a method, the method can't be over-ridden.
+- When the `final` keyword is used with a class, the class can't be inherited / extended.
+
+### Object Class & its Methods
+
+- Every class in Java extends the Object class.
+- Every time to we try to print the object reference of a class, it by default calls the toString() method of the Object class. The print value is the `className@hexValueOfTheHashCodeOfTheObject`.
+- It generates the hashCode() which will be of fixed sized and a numeric string, based on the values the object has.
+- The Object class's equals() method compare the two objects based on their hexadecimal values or based on their references. To compare two objects based on their values we need to override the equals() method of the Object class.
+- When we override the equals() method Object class to compare two objects which are having identical values, we should also consider overriding the hashCode() method of the Object class.
+- Like getters and setters you can also ask your IDE to generate toString(), equals() and hashCode() method. In VSCode you can right click on the code editor -> select 'Source Action' -> Choose 'Generate toString()' or 'Generate equals() and hashCode()'.
+
+### Up-casting and Down-casting
+
+- Upcasting and downcasting are concepts related to inheritance in Java.
+- Upcasting is the process of casting a subtype or child class to a supertype or parent class. In Java, upcasting is safe and doesn't require an explicit cast operator. It's often used to achieve polymorphism.
+
+  ```java
+  Animal myPet = new Dog(); // Dog extends Animal, this is upcasting
+  ```
+
+- Downcasting is the opposite, casting a supertype or parent class to a subtype or child class. In Java, downcasting requires an explicit cast and can throw a ClassCastException if the object being cast doesn't have the correct type.
+
+  ```java
+  Dog myDog = (Dog) myPet; // myPet is of type Animal, this is downcasting
+  ```
+
+- In this case, you must be sure that myPet is actually an instance of Dog before downcasting, otherwise a runtime error will occur. You can check this with the instanceof operator:
+
+  ```java
+  if (myPet instanceof Dog) {
+    Dog myDog = (Dog) myPet;
+  }
+  ```
+
+- Dis-advantage of upcasting is that we can't access the methods of the subclass even if the object is of subclass.
+
+### Wrapper class
+
+- A wrapper class in Java provides a way to use primitive data types (int, boolean, etc.) as objects. The eight primitive data types have corresponding wrapper classes:
+  - byte -> Byte
+  - short -> Short
+  - int -> Integer
+  - long -> Long
+  - float -> Float
+  - double -> Double
+  - boolean -> Boolean
+  - char -> Character
+- These are all found in the java.lang package, which is implicitly imported into all Java programs.
+- The uses of wrapper classes are:
+
+  - Object representation of primitives: In many situations, you need to use objects instead of primitive data types, such as in Collection classes or for null handling.
+  - Methods for converting primitives: Wrapper classes include methods to do things like converting primitives to strings, converting strings to primitives, and for other inter-conversions.
+  - Use in Collection framework: Collection framework in Java only works with objects and not with primitive types.
+  - Constants: Wrapper classes contain useful constants. For example, the Integer class has Integer.MAX_VALUE, Integer.MIN_VALUE, etc.
+
+  ```java
+  Integer myInt = Integer.valueOf(5); // create an Integer object
+  int myPrimitiveInt = myInt.intValue(); // convert back to primitive int
+  ```
+
+- Auto-boxing and unboxing are features in Java that allow automatic conversion between primitive types and their corresponding wrapper classes.
+- Auto-boxing is the automatic conversion of a primitive type to its corresponding wrapper class. For example, when you assign an int to an Integer, Java automatically converts the int to an Integer. This is auto-boxing:
+
+  ```java
+  int primitiveInt = 5;
+  Integer wrappedInt = primitiveInt; // Auto-boxing
+  ```
+
+- Unboxing is the reverse process, where a wrapper class is automatically converted to its corresponding primitive type. For example, when you assign an Integer to an int, Java automatically converts the Integer to an int. This is unboxing:
+
+  ```java
+  Integer wrappedInt = new Integer(5);
+  int primitiveInt = wrappedInt; // Unboxing
+  ```
+
+### Abstract keyword
+
+- The `abstract` keyword in Java is used to declare a class or method as abstract.
+- **Abstract Class**: An abstract class cannot be instantiated, meaning you cannot create objects from it directly. Instead, it's meant to be subclassed by other classes. An abstract class can contain abstract methods, as well as concrete methods (methods that have an implementation).
+- **Abstract Method**: An abstract method is a method that's declared but not implemented. The implementation is provided by the subclass. If a class contains even one abstract method, the whole class must be declared as abstract.
+- If you want to only declare a method and not define it, we can prefix it with the `abstract` keyword to make it an abstract method and an abstract method can only belong to an abstract class. Whichever class is extending the abstract class will have to provide an implementation of all the abstract methods if you don't do that then the sub-class will now become an abstract class and you will get an compile-time error.
+- We can't create the object of an abstract class but we can create a reference of it.
+- An abstract class can have - both abstract methods or concrete methods, or only abstract methods, or only concrete methods.
+
+### Inner Class
+
+- An inner class in Java is a class that is declared inside another class or interface. They are part of nested classes in Java.
+- Sometime we may be in a situation when a class is used only for a particular purpose i.e. a class is totally dependent on another class and there is no other need for it, in that case we can create a class inside another class which is called the inner class.
+- There are four types of inner classes:
+  - **Non-static nested class (inner class)**: This is a class defined within another class and behaves just like any other member of the class. It can access all members of the outer class, including private ones.
+  - **Static nested class**: This is a static class defined within another class. It can't access non-static members of the outer class directly because it's static.
+  - **Local inner class**: This is a class defined within a block of code, usually a method. It's not a member of the outer class, so it can't be accessed from outside the block it's defined in.
+  - **Anonymous inner class**: This is a class defined and instantiated in a single statement, usually when calling a method that requires an instance of an interface or class.
+- The uses of inner classes are:
+  - **Logical grouping**: If a class is useful to only one other class, it makes sense to keep it nested and together. It helps in packaging of the classes.
+  - **Increased encapsulation**: Consider two top-level classes, A and B, where B needs access to members of A that would otherwise be declared private. By hiding class B within class A, A's members can be declared private and B can access them. In addition, B itself can be hidden from the outside world.
+  - **More readable and maintainable code**: Nesting small classes within top-level classes places the code closer to where it is used.
+
+### Anonymous Inner Class
+
+- Anonymous inner classes in Java are classes that are defined and instantiated in a single statement, usually when calling a method that requires an instance of an interface or class. They are called "anonymous" because they don't have a name.
+- The primary use of anonymous inner classes is to create an object with certain "extras" such as overloading methods of a class or interface, without the need to actually subclass a class or implement an interface.
+- They are often used when you need to pass an object of a class that implements an interface to a method. Instead of creating a new named class that implements the interface, you can create an anonymous inner class on the fly.
+- Used in functional interfaces, lambda expressions etc.
+
+### Interfaces
+
+- Interfaces are useful to implement Loose Coupling.
+- Whenever we have a situation we have an abstract class with only abstract methods, we can go for creating an interface instead.
+- An interface in Java is a reference type, similar to a class, that can contain only constants, method signatures, default methods, static methods, and nested types.
+- Interface provides a way to ensure that a class adheres to a certain contract without having to inherit from a class - i.e. it provides a design, a set of un-defined/abstract methods and it becomes the necessity of the other classes to inherit the interface and implement the abstract methods. If the class fails to implement any abstract method of the interface then that class will also become a abstract class.
+- By default every method in the interface is `public` and `abstract`.
+- By default every variable in the interface is `public`, `static` and `final`. This means that they are constants, and you must initialize them at the time of declaration. You cannot change their value later, and they can be accessed directly through the interface name. The variables are `static` as you can't create the object of an interface so because of static you can directly access the variable by the interface name and `final` because interface does not have its own memory in the heap.
+- Use of interfaces:
+  - **Abstraction**: Interfaces provide a way to achieve full abstraction in Java, which can help to hide the implementation details of methods from the user.
+  - **Multiple Inheritance**: As mentioned above, a class can implement multiple interfaces, which is a way to achieve multiple inheritance in Java.
+  - **Loose Coupling**: Interfaces can be used to achieve loose coupling in software design, which makes components of a system independently deployable, scalable, and developable.
+- Abstract class vs Interface:
+  - **Default Method Implementation**: Interfaces provide the ability to declare default methods that include an implementation. Abstract classes can also contain concrete methods (methods with an implementation), but interfaces cannot contain constructors.
+  - **Multiple Inheritance**: A class can implement multiple interfaces, but it can only extend one abstract class. This allows Java to get around the lack of multiple inheritance.
+  - **Access Modifiers**: All methods in an interface are implicitly public and abstract, while an abstract class can have methods with any access modifier.
+  - **State**: Abstract classes can have instance variables, while interfaces cannot. This means that an abstract class can maintain a state, but an interface cannot.
+- `interface` inherits an `interface` with the keyword `extends`.
+- `class` inherits a `class` with the keyword `extends`.
+- `class` inherits an `interface` with the keyword `implements`.
+
+### Enum
